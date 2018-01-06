@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Link, IndexLink } from "react-router";
 import LoadingDots from "./LoadingDots";
 
-const Header = () => {
+const Header = ({ loading }) => {
   return (
     <nav>
       <IndexLink to="/" activeClassName="active">
@@ -16,9 +16,13 @@ const Header = () => {
       <Link to="/about" activeClassName="active">
         About
       </Link>
-      <LoadingDots dots={10} />
+      {loading && <LoadingDots dots={10} />}
     </nav>
   );
+};
+
+Header.propTypes = {
+  loading: PropTypes.bool.isRequired
 };
 
 export default Header;

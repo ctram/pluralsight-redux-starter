@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
@@ -7,8 +7,8 @@ const CourseForm = ({
   allAuthors,
   onSave,
   onChange,
-  loading,
-  errors
+  errors,
+  saving
 }) => {
   return (
     <form>
@@ -45,8 +45,8 @@ const CourseForm = ({
       />
       <input
         type="submit"
-        disabled={loading}
-        value={loading ? "Saving..." : "Save"}
+        disabled={saving || saving}
+        value={saving ? "Saving..." : "Save"}
         className="btn btn-primary"
         onClick={onSave}
       />
@@ -54,13 +54,13 @@ const CourseForm = ({
   );
 };
 
-CourseForm.protoTypes = {
-  course: React.PropTypes.object.isRequired,
-  allAuthors: React.PropTypes.array,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  loading: React.PropTypes.bool,
-  errors: React.PropTypes.object
+CourseForm.propTypes = {
+  course: PropTypes.object.isRequired,
+  allAuthors: PropTypes.array,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool.isRequired,
+  errors: PropTypes.object
 };
 
 export default CourseForm;
